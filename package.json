@@ -1,7 +1,7 @@
 {
-  "name": "capacitor-disk-space",
-  "version": "0.0.1",
-  "description": "Get the disk space information for Android and IPhone",
+  "name": "@kaykay/capacitor-disk-space",
+  "version": "7.0.0",
+  "description": "Get your disk space information for Android and IPhone",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",

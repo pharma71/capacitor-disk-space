@@ -1,3 +1,10 @@
+// definitions.ts
+export interface DiskSpaceInfo {
+  total: number;
+  free: number;
+  usedByApp: number;
+}
+
 export interface DiskSpacePlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  getDiskSpace(): Promise<DiskSpaceInfo>;
 }
