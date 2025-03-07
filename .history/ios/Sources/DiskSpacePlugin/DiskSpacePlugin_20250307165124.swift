@@ -12,14 +12,14 @@ public class DiskSpacePlugin: CAPPlugin {
             // Freier Speicherplatz
             let freeSpace = try getFreeDiskSpace()
 
-            // Von allen Apps verwendeter Speicherplatz (geschätzt)
-            let allAppsUsedSpace = totalSpace - freeSpace
+            // Von der App verwendeter Speicherplatz
+            let appUsedSpace = try getAppUsedDiskSpace()
 
             // Rückgabe der Daten als JSON
             let result = [
                 "totalSpace": totalSpace,
                 "freeSpace": freeSpace,
-                "allAppsUsedSpace": allAppsUsedSpace
+                "appUsedSpace": appUsedSpace
             ]
             call.resolve(result)
         } catch {
@@ -41,5 +41,15 @@ public class DiskSpacePlugin: CAPPlugin {
             throw NSError(domain: "DiskSpacePlugin", code: 2, userInfo: [NSLocalizedDescriptionKey: "Free space could not be determined"])
         }
         return freeSpace.intValue
+    }
+
+    private func getAppUsedDiskSpace() throws -> Int {
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
+        let appUsedSpace = try FileManager.default.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: [.fileSizeKey], options: [])
+            .reduce(0) { (size, url) -> Int in
+                let resourceValues = try url.resourceValues(forKeys: [.fileSizeKey])
+                return size + (resourceValues.fileSize ?? 0)
+            }
+        return appUsedSpace
     }
 }

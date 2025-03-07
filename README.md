@@ -59,10 +59,10 @@ getDiskSpace() => Promise<DiskSpaceInfo>
 
 #### DiskSpaceInfo
 
-| Prop            | Type                |
-| --------------- | ------------------- |
-| **`total`**     | <code>number</code> |
-| **`free`**      | <code>number</code> |
-| **`usedByApp`** | <code>number</code> |
+| Prop               | Type                |
+| ------------------ | ------------------- |
+| **`totalSpace`**   | <code>number</code> |
+| **`freeSpace`**    | <code>number</code> |
+| **`appUsedSpace`** | <code>number</code> |
 
 </docgen-api>

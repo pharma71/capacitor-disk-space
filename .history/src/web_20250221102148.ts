@@ -5,7 +5,7 @@ export class DiskSpaceWeb extends WebPlugin implements DiskSpacePlugin {
 
   async getDiskSpace(): Promise<DiskSpaceInfo> {
     console.warn('DiskSpace plugin is not available on the web.');
-    return { totalSpace: 0, freeSpace: 0, appUsedSpace: 0 };
+    return { total: 0, free: 0, usedByApp: 0 };
   }
 }
 
